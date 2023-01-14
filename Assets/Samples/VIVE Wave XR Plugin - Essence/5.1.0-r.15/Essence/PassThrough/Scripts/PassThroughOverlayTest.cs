@@ -27,8 +27,9 @@ namespace Wave.Essence.Samples.PassThrough
 		// Start is called before the first frame update
 		void Start()
 		{
-			Log.i(LOG_TAG, "PassThroughOverlay start: " + passThroughOverlayFlag);
-			showPassThroughOverlay = Interop.WVR_ShowPassthroughOverlay(passThroughOverlayFlag);
+			Log.i(LOG_TAG, "PassThroughUnderlay start: " + passThroughOverlayFlag);
+			//showPassThroughOverlay = Interop.WVR_ShowPassthroughOverlay(passThroughOverlayFlag);
+			Interop.WVR_ShowPassthroughUnderlay(passThroughOverlayFlag);
 			Interop.WVR_ShowProjectedPassthrough(false);
 			Log.i(LOG_TAG, "ShowPassThroughOverlay start: " + showPassThroughOverlay);
 		}
