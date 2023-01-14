@@ -8,6 +8,7 @@
 // conditions signed by you and all SDK and API requirements,
 // specifications, and documentation provided by HTC to You."
 
+using System.Collections;
 using UnityEngine;
 using Wave.Native;
 
@@ -17,7 +18,7 @@ namespace Wave.Essence.Samples.PassThrough
 	{
 		private static string LOG_TAG = "Wave.Essence.Samples.PassThrough.PassThroughOverlayTest";
 
-		private bool passThroughOverlayFlag = false;
+		private bool passThroughOverlayFlag = true;
 		private bool showPassThroughOverlay = false;
 		bool delaySubmit = false;
 		bool showIndicator = false;
@@ -25,17 +26,25 @@ namespace Wave.Essence.Samples.PassThrough
 		float alpha2 = 1.0f;
 		int steps = 0;
 		// Start is called before the first frame update
-		void Start()
+		IEnumerator Start()
 		{
+			//yield return null;
+			/*
+			for (int i = 0; i < 100; i++)
+			{
+				yield return null;
+			}*/
 			Log.i(LOG_TAG, "PassThroughUnderlay start: " + passThroughOverlayFlag);
 			//showPassThroughOverlay = Interop.WVR_ShowPassthroughOverlay(passThroughOverlayFlag);
-			Interop.WVR_ShowPassthroughUnderlay(passThroughOverlayFlag);
-			Interop.WVR_ShowProjectedPassthrough(false);
-			Log.i(LOG_TAG, "ShowPassThroughOverlay start: " + showPassThroughOverlay);
+			Interop.WVR_ShowPassthroughUnderlay(true);
+
+			yield break;
+			//Interop.WVR_ShowProjectedPassthrough(false);
+			//Log.i(LOG_TAG, "ShowPassThroughOverlay start: " + showPassThroughOverlay);
 		}
 
 		// Update is called once per frame
-		void Update()
+/*		void Update()
 		{
 			if (WXRDevice.ButtonPress(WVR_DeviceType.WVR_DeviceType_Controller_Right, WVR_InputId.WVR_InputId_Alias1_A))
 			{
@@ -130,19 +139,7 @@ namespace Wave.Essence.Samples.PassThrough
 				Log.i(LOG_TAG, "SetPassthroughOverlayAlpha: " + alpha);
 			}
 		}
+*/
 
-	private void OnApplicationPause()
-		{
-			showPassThroughOverlay = Interop.WVR_ShowPassthroughOverlay(false);
-			Interop.WVR_ShowProjectedPassthrough(false);
-			Log.i(LOG_TAG, "ShowPassThroughOverlay Pause: " + showPassThroughOverlay);
-		}
-
-		private void OnApplicationQuit()
-		{
-			showPassThroughOverlay = Interop.WVR_ShowPassthroughOverlay(false);
-			Interop.WVR_ShowProjectedPassthrough(false);
-			Log.i(LOG_TAG, "ShowPassThroughOverlay Quit: " + showPassThroughOverlay);
-		}
 	}
 }
