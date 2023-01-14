@@ -36,8 +36,9 @@ namespace Wave.Essence.Samples.PassThrough
 			}*/
 			Log.i(LOG_TAG, "PassThroughUnderlay start: " + passThroughOverlayFlag);
 			//showPassThroughOverlay = Interop.WVR_ShowPassthroughOverlay(passThroughOverlayFlag);
+			Interop.WVR_SetProjectedPassthroughAlpha(0.0f);
 			Interop.WVR_ShowPassthroughUnderlay(true);
-
+			//Interop.WVR_ShowProjectedPassthrough(false);
 			yield break;
 			//Interop.WVR_ShowProjectedPassthrough(false);
 			//Log.i(LOG_TAG, "ShowPassThroughOverlay start: " + showPassThroughOverlay);
